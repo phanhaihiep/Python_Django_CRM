@@ -1,0 +1,36 @@
+{% extends 'base/base.html' %}
+{% block title %}
+Update Customer
+{% endblock title %}
+
+{% block content %}
+<div class="col-md-6 offset-md-3"> 
+    <form action="" method="post">
+        {% csrf_token %}
+        {% for field in form %}
+        {% if field.name == 'name' %}
+        <div class="form-group">
+            {{ field.label }}
+            <input type="text" class="form-control" value="{{ field.value }}">
+        </div>
+        {% else %}
+        <div class="form-group">
+            {{ field.label }}
+            {{ field }}
+            {% if field.errors %}
+            {% for error in field.errors %}
+            <p class="invalid-feedback" style="display:block !important">{{error}}</p>
+             {% endfor %}
+            {% endif %}
+        </div>
+        {% endif %}
+
+        {% endfor %}
+        <input class="btn btn-success bth-lg bth-block" type="submit" value="Update">
+      
+        <a href="{% url 'list_customer' %}">
+            <i ></i> Go back
+        </a>
+    </form>
+</div>
+{% endblock content %}
