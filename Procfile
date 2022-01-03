@@ -1,1 +1,1 @@
-web: gunicorn CRM.wsgi
+web: gunicorn PYTHON_DJANGO_CRM.wsgi
