@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}
+
+        {% endblock title %}</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static 'css/bootstrap-icons.css' %}">
+        <script src="{% static 'js/jquery-3.6.0.min.js'%}"></script>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">     
+    </head>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'index' %}">Customer Relationship Management</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button> 
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+          
+            <li class="nav-item dropdown">
+             
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                <li><a href="{% url 'add_customer' %}" class="nav-link px-2 link-secondary">Register</a></li>
+                <li><a href="{% url 'list_customer' %}" class="nav-link px-2 link-dark">Clients</a></li>
+                                           
+              
+            </li>
+
+          </ul>
+        </div>
+        
+          <form class="form-inline my-2 my-lg-0" action="" method="GET">
+            <input id="search-keyword" class="form-control mr-sm-2" name="keyword" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="bi bi-search"></i></button>
+          </form>
+
+          <div class="text-end" style="margin-left: 20px;">
+            {% if user.is_authenticated %}
+              Welcome <strong>{{user.first_name}} {{user.last_name}}</strong>
+              <a href="{% url 'logout_user' %}"  class="btn btn-outline-success my-2 my-sm-0">Logout
+                <i class="bi bi-box-arrow-right"></i>
+              </a>
+            {% else %}
+              <a href="{% url 'login_user' %}" class="btn btn-outline-success my-2 my-sm-0">Login
+                <i class="bi bi-box-arrow-left"></i>
+              </a>
+              <a href="{% url 'register_user' %}" class="btn btn-outline-success my-2 my-sm-0">Sign-up
+                <i class="bi bi-person-bounding-box"></i>
+              </a>
+            {% endif %}
+              
+            
+          </div>
+            
+          </div>
+        
+   
+      </nav>
+      <div class="container">
+          <div class="row">
+              {% block content %}
+                  
+              {% endblock content %}
+          </div>
+      </div>
+<script src="{% static 'js/bootstrap.bundle.min.js'%}"></script>
+
+</body>
+</html>
+
